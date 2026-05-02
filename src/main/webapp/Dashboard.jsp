@@ -3,10 +3,7 @@
 
 <%
     // --- 1. SET UP FILE PATH ---
-    String path = application.getRealPath("/") + "data/members.txt";
-    File dataDir = new File(application.getRealPath("/") + "data");
-    if (!dataDir.exists()) dataDir.mkdirs(); // Create data folder if missing
-    
+    String path = application.getRealPath("/") + "../../members.txt";
     Filehandler fh = new Filehandler(path);
 
     // --- 2. HANDLE "ADD MEMBER" ACTION (POST) ---

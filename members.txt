@@ -1,0 +1,3 @@
+103,John Doe,25,555-0101,Premium,2026-12-01
+101,Alice Smith,30,555-0202,Basic,2026-11-15
+102,Bob Brown,22,555-0303,Premium,2026-10-20
