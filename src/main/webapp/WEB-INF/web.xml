@@ -8,7 +8,7 @@
     <display-name>Gym Management System</display-name>
 
     <welcome-file-list>
-        <welcome-file>Dashboard.jsp</welcome-file>
+        <welcome-file>intro.jsp</welcome-file>
     </welcome-file-list>
 
 </web-app>

@@ -174,6 +174,10 @@
             
             <button type="button" onclick="handleLogin()">Authorize Access</button>
         </form>
+
+        <div style="margin-top: 25px; font-size: 11px; color: var(--text-gray); letter-spacing: 1px;">
+            Need Access? <a href="register.jsp" style="color: var(--brand-orange); text-decoration: none; font-weight: bold;">Register Here</a>
+        </div>
     </div>
 
     <script>
@@ -219,7 +223,7 @@
             card.style.opacity = "0";
             
             setTimeout(() => {
-                window.location.href = "dashboard.html"; 
+                window.location.href = "Dashboard.jsp"; 
             }, 600);
         }
     </script>

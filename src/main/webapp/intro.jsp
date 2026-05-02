@@ -186,9 +186,9 @@
             if (progress >= 100) {
                 clearInterval(interval);
                 setTimeout(() => {
-                    // Redirect to your login page
-                    window.location.href = "login.html";
-                }, 800);
+                    // Redirect to your register page
+                    window.location.href = "register.jsp";
+                }, 600);
             }
         }, 300);
     </script>
