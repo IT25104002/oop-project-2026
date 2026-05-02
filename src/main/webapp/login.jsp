@@ -1,3 +1,38 @@
+<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
+<%@ page import="java.io.*, java.util.*" %>
+<%
+    // --- HANDLE LOGIN (POST) ---
+    String action = request.getParameter("action");
+    if ("login".equals(action)) {
+        String inputId = request.getParameter("id");
+        String inputPass = request.getParameter("pass");
+        boolean authorized = false;
+
+        String path = application.getRealPath("/") + "../../users.txt";
+        File userFile = new File(path);
+
+        if (userFile.exists()) {
+            try (BufferedReader br = new BufferedReader(new FileReader(userFile))) {
+                String line;
+                while ((line = br.readLine()) != null) {
+                    String[] parts = line.split(",");
+                    if (parts.length >= 3 && parts[0].equals(inputId) && parts[2].equals(inputPass)) {
+                        authorized = true;
+                        break;
+                    }
+                }
+            } catch (IOException e) { }
+        }
+
+        if (authorized) {
+            session.setAttribute("admin", inputId);
+            response.sendRedirect("Dashboard.jsp");
+            return;
+        } else {
+            out.println("<script>alert('Access Denied: Invalid ID or Pass');</script>");
+        }
+    }
+%>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -161,18 +196,19 @@
         <h2>FIT<span>NASE</span></h2>
         <p>ELITE GYM MANAGEMENT SYSTEM</p>
         
-        <form id="loginForm">
+        <form action="login.jsp" method="POST">
+            <input type="hidden" name="action" value="login">
             <div class="form-group">
                 <label>ADMINISTRATOR ID</label>
-                <input type="text" placeholder="ID-001" required>
+                <input type="text" name="id" placeholder="ID-001" required>
             </div>
             
             <div class="form-group">
                 <label>SECURITY PASS</label>
-                <input type="password" placeholder="••••••••" required>
+                <input type="password" name="pass" placeholder="••••••••" required>
             </div>
             
-            <button type="button" onclick="handleLogin()">Authorize Access</button>
+            <button type="submit">Authorize Access</button>
         </form>
 
         <div style="margin-top: 25px; font-size: 11px; color: var(--text-gray); letter-spacing: 1px;">

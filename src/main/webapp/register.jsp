@@ -1,4 +1,26 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
+<%@ page import="java.io.*, java.util.*" %>
+<%
+    // --- HANDLE REGISTRATION (POST) ---
+    String action = request.getParameter("action");
+    if ("register".equals(action)) {
+        String id = request.getParameter("id");
+        String name = request.getParameter("name");
+        String pass = request.getParameter("pass");
+
+        // Path to users.txt in the root folder
+        String path = application.getRealPath("/") + "../../users.txt";
+        
+        try (BufferedWriter bw = new BufferedWriter(new FileWriter(path, true))) {
+            bw.write(id + "," + name + "," + pass);
+            bw.newLine();
+            response.sendRedirect("login.jsp?msg=success");
+            return;
+        } catch (IOException e) {
+            out.println("<script>alert('Error saving user data');</script>");
+        }
+    }
+%>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -78,20 +100,21 @@
         <h2>REGIS<span>TER</span></h2>
         <p>CREATE ELITE ACCESS</p>
         
-        <form action="login.jsp" method="GET">
+        <form action="register.jsp" method="POST">
+            <input type="hidden" name="action" value="register">
             <div class="form-group">
                 <label>ADMINISTRATOR ID</label>
-                <input type="text" placeholder="e.g. ID-001" required>
+                <input type="text" name="id" placeholder="e.g. ID-001" required>
             </div>
             
             <div class="form-group">
                 <label>FULL NAME</label>
-                <input type="text" placeholder="e.g. John Doe" required>
+                <input type="text" name="name" placeholder="e.g. John Doe" required>
             </div>
 
             <div class="form-group">
                 <label>SECURITY PASS</label>
-                <input type="password" placeholder="••••••••" required>
+                <input type="password" name="pass" placeholder="••••••••" required>
             </div>
             
             <button type="submit">Create Account</button>
