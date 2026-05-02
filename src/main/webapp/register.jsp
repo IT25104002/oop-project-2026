@@ -10,14 +10,32 @@
 
         // Path to users.txt in the root folder
         String path = application.getRealPath("/") + "../../users.txt";
-        
-        try (BufferedWriter bw = new BufferedWriter(new FileWriter(path, true))) {
-            bw.write(id + "," + name + "," + pass);
-            bw.newLine();
-            response.sendRedirect("login.jsp?msg=success");
-            return;
-        } catch (IOException e) {
-            out.println("<script>alert('Error saving user data');</script>");
+        File userFile = new File(path);
+        boolean exists = false;
+
+        if (userFile.exists()) {
+            try (BufferedReader br = new BufferedReader(new FileReader(userFile))) {
+                String line;
+                while ((line = br.readLine()) != null) {
+                    if (line.startsWith(id + ",")) {
+                        exists = true;
+                        break;
+                    }
+                }
+            } catch (IOException e) { }
+        }
+
+        if (exists) {
+            out.println("<script>alert('Error: This Administrator ID is already taken!'); history.back();</script>");
+        } else {
+            try (BufferedWriter bw = new BufferedWriter(new FileWriter(path, true))) {
+                bw.write(id + "," + name + "," + pass);
+                bw.newLine();
+                response.sendRedirect("login.jsp?msg=success");
+                return;
+            } catch (IOException e) {
+                out.println("<script>alert('Error saving user data');</script>");
+            }
         }
     }
 %>
