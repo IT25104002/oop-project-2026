@@ -149,7 +149,8 @@
         </form>
 
         <div class="link-text">
-            Already have access? <a href="AdminLogin.jsp">Login Here</a>
+            <%-- Changed href from AdminLogin.jsp to login.jsp --%>
+            Already have access? <a href="login.jsp">Login Here</a>
         </div>
 
         <!-- பட்டன் இப்போது AdminLogin.jsp பக்கத்திற்கு அழைத்துச் செல்லும் -->

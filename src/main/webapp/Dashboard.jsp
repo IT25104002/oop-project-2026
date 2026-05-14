@@ -157,13 +157,13 @@
                 <li onclick="window.location.href='Dashboard.jsp'">Home</li>
                 <li onclick="window.location.href='Dashboard.jsp'">Dashboard</li>
                 
-                <!-- Added Schedule Button linking to user.jsp -->
                 <li><a href="user.jsp" class="nav-action-btn"><i class="fas fa-calendar-alt"></i> SCHEDULE</a></li>
-                
-                <!-- Member Diet Button -->
                 <li><a href="memberdiet.jsp" class="nav-action-btn"><i class="fas fa-utensils"></i> MEMBER DIET</a></li>
-                <!-- Payment Button -->
                 <li><a href="plan-selection.jsp" class="nav-action-btn"><i class="fas fa-credit-card"></i> PAYMENT</a></li>
+                
+                <!-- Feedback Button Added Here -->
+                <li><a href="Feedback.jsp" class="nav-action-btn"><i class="fas fa-comment-dots"></i> FEEDBACK</a></li>
+                
                 <li>Contact</li>
             </ul>
         </nav>
