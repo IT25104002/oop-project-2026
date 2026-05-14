@@ -156,6 +156,10 @@
             <ul>
                 <li onclick="window.location.href='Dashboard.jsp'">Home</li>
                 <li onclick="window.location.href='Dashboard.jsp'">Dashboard</li>
+                
+                <!-- Added Schedule Button linking to user.jsp -->
+                <li><a href="user.jsp" class="nav-action-btn"><i class="fas fa-calendar-alt"></i> SCHEDULE</a></li>
+                
                 <!-- Member Diet Button -->
                 <li><a href="memberdiet.jsp" class="nav-action-btn"><i class="fas fa-utensils"></i> MEMBER DIET</a></li>
                 <!-- Payment Button -->

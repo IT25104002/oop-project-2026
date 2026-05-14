@@ -180,7 +180,8 @@
             <i class="fas fa-credit-card"></i> Payment Management
         </a>
         
-        <a href="schedule-management.jsp" class="menu-item">
+        <%-- Updated link to admin.jsp --%>
+        <a href="admin.jsp" class="menu-item">
             <i class="fas fa-calendar-check"></i> Schedule Management
         </a>
 

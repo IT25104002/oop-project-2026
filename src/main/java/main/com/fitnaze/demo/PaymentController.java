@@ -1,4 +1,4 @@
-package com.fitnaze.demo;
+package main.com.fitnaze.demo;
 
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
