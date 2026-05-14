@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
-<%@ page import="main.DietPlan, java.util.*" %>
+<%-- Updated import to resolve the Type error --%>
+<%@ page import="java.util.*, main.*" %>
 
 <%
     List<DietPlan> plans = (List<DietPlan>) request.getAttribute("plans");
@@ -359,8 +360,7 @@ header {
             <p><i class="fas fa-bullseye" style="color:var(--brand-orange)"></i> Goal: <%= dp.getFitnessGoal() %></p>
             <p><i class="fas fa-calendar" style="color:var(--brand-orange)"></i> Created: <%= dp.getCreatedDate() %></p>
             <p><i class="fas fa-tint" style="color:#1e90ff"></i> Water: <%= dp.getWaterIntake() %> litres/day</p>
-            <a href="
-            dietplan?action=view&id=<%= dp.getPlanId() %>" class="action-btn">
+            <a href="dietplan?action=view&id=<%= dp.getPlanId() %>" class="action-btn">
                 <i class="fas fa-eye"></i> View Full Plan
             </a>
         </div>

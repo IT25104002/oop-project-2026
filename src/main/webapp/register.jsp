@@ -9,7 +9,7 @@
         String pass = request.getParameter("pass");
 
         // Path to users.txt in the root folder
-        String path = application.getRealPath("/") + "../users.txt";
+        String path = application.getRealPath("/") + "../../users.txt";
         File userFile = new File(path);
         boolean exists = false;
 

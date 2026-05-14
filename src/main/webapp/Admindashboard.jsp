@@ -188,7 +188,8 @@
             <i class="fas fa-comment-dots"></i> Feedback Management
         </a>
 
-        <a href="diet-plan-management.jsp" class="menu-item">
+        <%-- Updated link to dietplan.jsp --%>
+        <a href="dietplan.jsp" class="menu-item">
             <i class="fas fa-utensils"></i> Diet Plan Management
         </a>
 
@@ -222,7 +223,6 @@
                     </tr>
                 </thead>
                 <tbody>
-                    <!-- இது ஒரு மாதிரி தகவல் (Sample Data) -->
                     <tr>
                         <td>Mathu</td>
                         <td>Gold Membership</td>

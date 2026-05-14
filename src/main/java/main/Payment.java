@@ -6,9 +6,9 @@ public class Payment {
     private int duration;
     private double amount;
     private String paymentMethod;
-    private String status; // මේක තමයි getStatus() එකට ඕන කරන්නේ
+    private String status;
 
-    // Default Constructor (Spring Boot එකට අනිවාර්යයි)
+    // Default Constructor
     public Payment() {}
 
     // Getters and Setters
@@ -27,6 +27,6 @@ public class Payment {
     public String getPaymentMethod() { return paymentMethod; }
     public void setPaymentMethod(String paymentMethod) { this.paymentMethod = paymentMethod; }
 
-    public String getStatus() { return status; } // මේ Getter එක තමයි Controller එක හොයන්නේ
+    public String getStatus() { return status; }
     public void setStatus(String status) { this.status = status; }
 }

@@ -8,7 +8,7 @@
         String inputPass = request.getParameter("pass");
         boolean authorized = false;
 
-        String path = application.getRealPath("/") + "../users.txt";
+        String path = application.getRealPath("/") + "../../users.txt";
         File userFile = new File(path);
 
         if (userFile.exists()) {
