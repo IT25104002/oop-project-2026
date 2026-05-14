@@ -4,7 +4,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>FITNASE | Elite Admin Panel</title>
+    <title>FITNAZE | Elite Admin Panel</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     
     <style>
@@ -13,6 +13,7 @@
             --black-bg: #080808;
             --sidebar-bg: #0a0a0a;
             --card-hover: rgba(255, 87, 34, 0.15);
+            --success-green: #4CAF50;
         }
 
         body {
@@ -25,7 +26,7 @@
             overflow: hidden;
         }
 
-        /* Sidebar Design based on your screenshot */
+        /* Sidebar Design */
         .sidebar {
             width: 300px;
             background: var(--sidebar-bg);
@@ -68,13 +69,13 @@
             text-align: center;
         }
 
-        /* Active/Hover State */
         .menu-item:hover, .menu-item.active {
             background: linear-gradient(to right, rgba(255, 87, 34, 0.25), transparent);
             border-left: 5px solid var(--brand-orange);
             transform: translateX(8px);
         }
 
+        /* Main Content Area */
         .main-content {
             flex-grow: 1;
             padding: 50px;
@@ -90,14 +91,76 @@
             padding-left: 20px;
         }
 
+        /* Payment Approval Table */
+        .management-card {
+            background: rgba(255, 255, 255, 0.03);
+            padding: 30px;
+            border-radius: 20px;
+            border: 1px solid rgba(255, 87, 34, 0.1);
+            margin-top: 30px;
+        }
+
+        .management-card h2 {
+            font-size: 1.5em;
+            margin-bottom: 20px;
+            color: var(--brand-orange);
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 10px;
+        }
+
+        th {
+            text-align: left;
+            background: rgba(255, 87, 34, 0.1);
+            padding: 15px;
+            color: var(--brand-orange);
+            text-transform: uppercase;
+            font-size: 0.8em;
+        }
+
+        td {
+            padding: 15px;
+            border-bottom: 1px solid #1a1a1a;
+            font-size: 0.9em;
+        }
+
+        .status-badge {
+            padding: 5px 10px;
+            border-radius: 4px;
+            font-size: 0.75em;
+            background: #ffa000;
+            color: black;
+            font-weight: bold;
+        }
+
+        .btn-approve {
+            background: var(--success-green);
+            color: white;
+            border: none;
+            padding: 8px 15px;
+            border-radius: 5px;
+            cursor: pointer;
+            font-weight: bold;
+            transition: 0.3s;
+        }
+
+        .btn-approve:hover {
+            background: #388e3c;
+            box-shadow: 0 0 10px rgba(76, 175, 80, 0.4);
+        }
+
         .welcome-box {
             background: rgba(255, 255, 255, 0.03);
             padding: 30px;
             border-radius: 20px;
             border: 1px solid rgba(255, 87, 34, 0.1);
+            margin-bottom: 30px;
         }
-
-        .welcome-box p { color: #aaa; line-height: 1.8; font-size: 1.1em; }
     </style>
 </head>
 <body>
@@ -113,7 +176,7 @@
             <i class="fas fa-users-gear"></i> Manage Members
         </a>
         
-        <a href="payment-management.jsp" class="menu-item">
+        <a href="#payment-section" class="menu-item">
             <i class="fas fa-credit-card"></i> Payment Management
         </a>
         
@@ -140,10 +203,41 @@
         </div>
 
         <div class="welcome-box">
-            <h2 style="color: var(--brand-orange)">welcome!!</h2>
-            <p>
-                Hey sunflower , miss you badly!!!!.
-            </p>
+            <h2 style="color: var(--brand-orange)">Welcome Back!</h2>
+            <p>You have new payment requests awaiting your approval.</p>
+        </div>
+
+        <!-- Payment Management Section -->
+        <div class="management-card" id="payment-section">
+            <h2><i class="fas fa-file-invoice-dollar"></i> Pending Payment Approvals</h2>
+            <table>
+                <thead>
+                    <tr>
+                        <th>Member Name</th>
+                        <th>Plan</th>
+                        <th>Amount</th>
+                        <th>Method</th>
+                        <th>Status</th>
+                        <th>Action</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <!-- இது ஒரு மாதிரி தகவல் (Sample Data) -->
+                    <tr>
+                        <td>Mathu</td>
+                        <td>Gold Membership</td>
+                        <td>Rs. 15,000</td>
+                        <td>Bank Transfer</td>
+                        <td><span class="status-badge">PENDING</span></td>
+                        <td>
+                            <form action="ApprovePaymentServlet" method="POST" style="display:inline;">
+                                <input type="hidden" name="paymentId" value="101">
+                                <button type="submit" class="btn-approve">APPROVE</button>
+                            </form>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
         </div>
     </div>
 

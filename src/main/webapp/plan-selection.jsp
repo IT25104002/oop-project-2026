@@ -171,7 +171,8 @@
                 <li>Locker Facilities</li>
                 <li>Standard Support</li>
             </ul>
-            <a href="/payment?plan=Bronze" class="btn">Select Bronze</a>
+            <!-- Href changed to payment-form.jsp -->
+            <a href="payment-form.jsp?plan=Bronze" class="btn">Select Bronze</a>
         </div>
 
         <div class="plan-card" style="border-color: rgba(255, 87, 34, 0.5);">
@@ -184,7 +185,8 @@
                 <li>Personal Meal Plan</li>
                 <li>Weekly Progress Check</li>
             </ul>
-            <a href="/payment?plan=Silver" class="btn">Select Silver</a>
+            <!-- Href changed to payment-form.jsp -->
+            <a href="payment-form.jsp?plan=Silver" class="btn">Select Silver</a>
         </div>
 
         <div class="plan-card">
@@ -196,7 +198,8 @@
                 <li>All Facilities Included</li>
                 <li>Customized Nutrition</li>
             </ul>
-            <a href="/payment?plan=Gold" class="btn">Select Gold</a>
+            <!-- Href changed to payment-form.jsp -->
+            <a href="payment-form.jsp?plan=Gold" class="btn">Select Gold</a>
         </div>
     </div>
 

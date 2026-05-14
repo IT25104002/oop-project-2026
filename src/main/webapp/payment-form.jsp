@@ -1,7 +1,19 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
+<%
+    // URL மூலம் வரும் பிளான் பெயரைப் பெறுதல்
+    String selectedPlan = request.getParameter("plan");
+    if (selectedPlan == null || selectedPlan.isEmpty()) {
+        selectedPlan = "Bronze"; 
+    }
+    
+    // பயனர் தகவல்கள்
+    String userName = "Mathu"; 
+    String userId = "FN-2026-089";
+%>
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
+    <meta charset="UTF-8">
     <title>FITNAZE | Elite Secure Payment</title>
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&family=Oswald:wght@700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
@@ -9,16 +21,15 @@
         :root {
             --brand-orange: #ff5722;
             --dark-bg: #0f0f0f;
-            --card-bg: rgba(26, 26, 26, 0.9); /* Slightly transparent */
+            --card-bg: rgba(26, 26, 26, 0.98);
             --text-gray: #bbbbbb;
             --glow-orange: rgba(255, 87, 34, 0.4);
         }
 
         body { 
             margin: 0; 
-            /* Background Image එක මෙතනින් හරිගැස්සුවා */
-            background: linear-gradient(rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0.8)), 
-                        url('/images/payment-bg.jpg'); 
+            background: linear-gradient(rgba(0, 0, 0, 0.85), rgba(0, 0, 0, 0.95)), 
+                        url('https://images.unsplash.com/photo-1534438327276-14e5300c3a48?q=80&w=2070'); 
             background-size: cover;
             background-position: center;
             background-attachment: fixed;
@@ -32,20 +43,19 @@
 
         .card { 
             background: var(--card-bg);
-            backdrop-filter: blur(10px); /* පින්තූරය පිටුපසින් පේන ගතිය */
+            backdrop-filter: blur(15px);
             padding: 40px; 
             border-radius: 15px; 
             width: 450px; 
             border: 1px solid rgba(255, 255, 255, 0.1); 
-            box-shadow: 0 20px 50px rgba(0,0,0,0.6);
+            box-shadow: 0 20px 50px rgba(0,0,0,0.8);
             position: relative;
-            overflow: hidden;
         }
 
         .card::before {
             content: "";
             position: absolute;
-            top: 0; left: 0; width: 100%; height: 3px;
+            top: 0; left: 0; width: 100%; height: 4px;
             background: var(--brand-orange);
             box-shadow: 0 0 15px var(--brand-orange);
         }
@@ -54,9 +64,9 @@
             color: white; 
             text-align: center; 
             font-family: 'Oswald', sans-serif;
-            font-size: 2rem;
+            font-size: 2.2rem;
             letter-spacing: 3px; 
-            margin-bottom: 5px; 
+            margin-bottom: 20px; 
             text-transform: uppercase;
         }
         
@@ -64,12 +74,26 @@
 
         .user-info { 
             text-align: center; 
-            font-size: 12px; 
+            font-size: 13px; 
             color: var(--text-gray); 
             margin-bottom: 25px; 
             background: rgba(255,255,255,0.05);
-            padding: 12px;
+            padding: 15px;
             border-radius: 8px;
+            border: 1px solid rgba(255, 87, 34, 0.2);
+        }
+
+        .plan-badge { 
+            background: var(--brand-orange); 
+            color: white; 
+            padding: 4px 15px; 
+            border-radius: 20px; 
+            font-weight: bold; 
+            text-transform: uppercase;
+            font-size: 11px;
+            margin-left: 5px;
+            display: inline-block;
+            box-shadow: 0 0 10px var(--glow-orange);
         }
 
         label { 
@@ -77,7 +101,7 @@
             color: var(--brand-orange); 
             font-weight: bold; 
             display: block; 
-            margin-top: 15px; 
+            margin-top: 20px; 
             text-transform: uppercase; 
             letter-spacing: 1px;
         }
@@ -85,11 +109,11 @@
         select, input { 
             width: 100%; 
             padding: 12px; 
-            background: rgba(0,0,0,0.6); 
-            border: 1px solid #444; 
+            background: rgba(0,0,0,0.7); 
+            border: 1px solid #333; 
             color: white; 
             border-radius: 5px; 
-            margin-top: 5px; 
+            margin-top: 8px; 
             box-sizing: border-box; 
             outline: none; 
             transition: 0.3s;
@@ -97,12 +121,11 @@
 
         select:focus, input:focus { 
             border-color: var(--brand-orange); 
-            box-shadow: 0 0 10px var(--glow-orange);
             background: #000;
         }
 
         .method-box { 
-            background: rgba(0, 0, 0, 0.4); 
+            background: rgba(0, 0, 0, 0.5); 
             padding: 15px; 
             border-radius: 8px; 
             margin-top: 15px; 
@@ -110,12 +133,12 @@
         }
 
         .total-box { 
-            background: rgba(255, 87, 34, 0.1); 
+            background: rgba(255, 87, 34, 0.15); 
             padding: 20px; 
             text-align: center; 
             margin-top: 25px; 
             border-radius: 10px; 
-            border: 1px dashed var(--brand-orange); 
+            border: 2px dashed var(--brand-orange); 
         }
 
         .btn { 
@@ -125,7 +148,7 @@
             border: none; 
             color: white; 
             font-family: 'Oswald', sans-serif;
-            font-size: 1.1rem;
+            font-size: 1.2rem;
             font-weight: bold; 
             margin-top: 25px; 
             cursor: pointer; 
@@ -136,36 +159,32 @@
 
         .btn:hover { 
             background: #e64a19; 
-            box-shadow: 0 0 20px var(--glow-orange);
+            box-shadow: 0 0 25px var(--glow-orange);
             transform: translateY(-2px); 
-        }
-
-        .plan-badge { 
-            background: var(--brand-orange); 
-            color: white; 
-            padding: 2px 12px; 
-            border-radius: 20px; 
-            font-weight: bold; 
-            text-transform: uppercase;
         }
     </style>
 </head>
 <body>
     <div class="card">
         <h2>SECURE <span>PAYMENT</span></h2>
+        
+        <!-- User Info Header -->
         <div class="user-info">
-            <i class="fas fa-user-circle"></i> User: <b>${userName}</b> | ID: <b>${userId}</b><br>
-            <div style="margin-top: 8px;">
-                Selected Plan: <span class="plan-badge">${selectedPlan}</span>
+            <i class="fas fa-user-circle"></i> User: <b><%= userName %></b> | ID: <b><%= userId %></b><br>
+            <div style="margin-top: 10px;">
+                Selected Plan: <span class="plan-badge" id="planLabel"><%= selectedPlan %></span>
             </div>
         </div>
 
-        <form action="/addPayment" method="post">
-            <input type="hidden" name="name" value="${userName}">
-            <input type="hidden" name="plan" value="${selectedPlan}">
-            
+        <!-- Payment Form -->
+        <form action="payment-success.jsp" method="POST">
+            <!-- Hidden inputs to pass data to payment-success.jsp -->
+            <input type="hidden" name="p-name" value="<%= userName %>">
+            <input type="hidden" name="p-plan" value="<%= selectedPlan %>">
+            <input type="hidden" name="p-amount" id="finalAmountInput">
+
             <label><i class="fas fa-clock"></i> Membership Duration</label>
-            <select name="duration" id="duration" onchange="calculate()">
+            <select name="p-duration" id="durationSelect" onchange="calculateTotal()">
                 <option value="1">1 Month (Regular)</option>
                 <option value="3">3 Months (5% OFF)</option>
                 <option value="6">6 Months (10% OFF)</option>
@@ -173,31 +192,33 @@
             </select>
 
             <label><i class="fas fa-credit-card"></i> Payment Method</label>
-            <select name="paymentMethod" id="method" onchange="toggleFields()">
+            <select name="p-method" id="methodSelect" onchange="togglePaymentFields()">
                 <option value="Card">Credit / Debit Card</option>
                 <option value="Online">Online Transfer</option>
             </select>
 
-            <div id="cardFields" class="method-box">
-                <input type="text" placeholder="Card Number (16 Digits)">
+            <!-- Card Payment Fields -->
+            <div id="cardSection" class="method-box">
+                <input type="text" placeholder="Card Number (16 Digits)" maxlength="16">
                 <div style="display: flex; gap: 10px; margin-top: 10px;">
-                    <input type="text" placeholder="MM/YY">
-                    <input type="password" placeholder="CVV">
+                    <input type="text" placeholder="MM/YY" maxlength="5">
+                    <input type="password" placeholder="CVV" maxlength="3">
                 </div>
             </div>
 
-            <div id="onlineFields" class="method-box" style="display:none;">
-                <p style="font-size: 11px; margin: 0 0 10px 0; color: var(--text-gray);">
-                    Official Account: <b style="color: white;">BOC - 123456789</b>
+            <!-- Online Transfer Fields -->
+            <div id="onlineSection" class="method-box" style="display:none;">
+                <p style="font-size: 11px; color: var(--text-gray); margin: 0 0 10px 0;">
+                    Official Bank: <b style="color: white;">BOC - 123456789</b>
                 </p>
-                <label style="color: #777;">Upload Receipt</label>
-                <input type="file" style="font-size: 10px; border: none; background: none; padding: 0;">
+                <label style="color: #888; font-size: 9px;">Proof of Payment (Image)</label>
+                <input type="file" style="font-size: 10px; border: none; background: none; padding: 5px 0;">
             </div>
 
+            <!-- Total Amount Display -->
             <div class="total-box">
                 <span style="font-size: 10px; color: var(--text-gray); letter-spacing: 2px;">TOTAL AMOUNT DUE</span><br>
-                <span style="font-size: 28px; font-weight: bold; color: white;">Rs. <span id="displayAmount">0</span></span>
-                <input type="hidden" name="amount" id="finalAmount">
+                <span style="font-size: 34px; font-weight: bold; color: white;">Rs. <span id="amountDisplay">0</span></span>
             </div>
 
             <button type="submit" class="btn">Confirm & Pay Now</button>
@@ -205,28 +226,32 @@
     </div>
 
     <script>
-        function calculate() {
-            const prices = {"Bronze": 5000, "Silver": 8000, "Gold": 12000};
-            const discounts = {"1": 0, "3": 0.05, "6": 0.10, "12": 0.20};
-            
-            let plan = "${selectedPlan}";
-            let duration = document.getElementById("duration").value;
-            
-            let basePrice = prices[plan] * duration;
-            let discountAmount = basePrice * discounts[duration];
-            let finalPrice = basePrice - discountAmount;
+        function calculateTotal() {
+            const prices = { "Bronze": 5000, "Silver": 8000, "Gold": 12000 };
+            const discounts = { "1": 0.00, "3": 0.05, "6": 0.10, "12": 0.20 };
 
-            document.getElementById("displayAmount").innerText = finalPrice.toLocaleString();
-            document.getElementById("finalAmount").value = finalPrice;
+            let selectedPlan = document.getElementById("planLabel").innerText.trim();
+            let duration = document.getElementById("durationSelect").value;
+
+            let monthlyPrice = prices[selectedPlan] || 0;
+            let subtotal = monthlyPrice * parseInt(duration);
+            let discountRate = discounts[duration];
+            let finalPrice = subtotal - (subtotal * discountRate);
+
+            document.getElementById("amountDisplay").innerText = finalPrice.toLocaleString();
+            document.getElementById("finalAmountInput").value = finalPrice;
         }
 
-        function toggleFields() {
-            let method = document.getElementById("method").value;
-            document.getElementById("cardFields").style.display = (method === 'Card') ? 'block' : 'none';
-            document.getElementById("onlineFields").style.display = (method === 'Online') ? 'block' : 'none';
+        function togglePaymentFields() {
+            let method = document.getElementById("methodSelect").value;
+            document.getElementById("cardSection").style.display = (method === 'Card') ? 'block' : 'none';
+            document.getElementById("onlineSection").style.display = (method === 'Online') ? 'block' : 'none';
         }
 
-        window.onload = calculate;
+        window.onload = function() {
+            calculateTotal();
+            togglePaymentFields();
+        };
     </script>
 </body>
 </html>

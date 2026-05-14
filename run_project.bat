@@ -12,4 +12,4 @@ echo.
 echo Starting Server on http://localhost:8080/
 echo Press Ctrl+C to stop the server. (KEEP THIS WINDOW OPEN)
 echo.
-java -jar jetty-runner.jar --port 8080 --classes src/main/webapp/WEB-INF/classes --lib src/main/webapp/WEB-INF/lib src/main/webapp
+java -jar jetty-runner.jar src/main/webapp

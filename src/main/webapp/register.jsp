@@ -9,7 +9,7 @@
         String pass = request.getParameter("pass");
 
         // Path to users.txt in the root folder
-        String path = application.getRealPath("/") + "../../users.txt";
+        String path = application.getRealPath("/") + "../users.txt";
         File userFile = new File(path);
         boolean exists = false;
 
@@ -110,6 +110,16 @@
 
         .link-text { margin-top: 25px; font-size: 11px; color: var(--text-gray); }
         .link-text a { color: var(--brand-orange); text-decoration: none; font-weight: bold; }
+
+        .admin-btn {
+            background: transparent;
+            border: 1px solid var(--brand-orange);
+            color: var(--h-color);
+            margin-top: 15px;
+        }
+        .admin-btn:hover {
+            background: rgba(255, 87, 34, 0.1);
+        }
     </style>
 </head>
 <body>
@@ -139,8 +149,13 @@
         </form>
 
         <div class="link-text">
-            Already have access? <a href="login.jsp">Login Here</a>
+            Already have access? <a href="AdminLogin.jsp">Login Here</a>
         </div>
+
+        <!-- பட்டன் இப்போது AdminLogin.jsp பக்கத்திற்கு அழைத்துச் செல்லும் -->
+        <button type="button" class="admin-btn" onclick="window.location.href='AdminLogin.jsp'">
+            Go to admin login
+        </button>
     </div>
 
 </body>
