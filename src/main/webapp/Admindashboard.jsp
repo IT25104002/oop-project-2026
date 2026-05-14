@@ -4,7 +4,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>FITNAZE | Elite Admin Panel</title>
+    <title>FITNASE | Elite Admin Panel</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     
     <style>
@@ -180,16 +180,15 @@
             <i class="fas fa-credit-card"></i> Payment Management
         </a>
         
-        <%-- Updated link to admin.jsp --%>
         <a href="admin.jsp" class="menu-item">
             <i class="fas fa-calendar-check"></i> Schedule Management
         </a>
 
-        <a href="feedback-management.jsp" class="menu-item">
+        <%-- Updated link to Feedback.jsp --%>
+        <a href="Feedback.jsp" class="menu-item">
             <i class="fas fa-comment-dots"></i> Feedback Management
         </a>
 
-        <%-- Updated link to dietplan.jsp --%>
         <a href="dietplan.jsp" class="menu-item">
             <i class="fas fa-utensils"></i> Diet Plan Management
         </a>
